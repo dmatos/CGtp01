@@ -188,7 +188,6 @@ void exibe() {
 	angGiroCena = 0;
 	place();
 
-	//tetes
 
 	cena();
 	glPopMatrix();
