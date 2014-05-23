@@ -7,6 +7,7 @@
 
 #include <GL/glut.h>
 #include <stdlib.h>
+#include <math.h>
 
 GLfloat vertices[][3] = { { -1.0, -1.0, -1.0 }, { 1.0, -1.0, -1.0 }, { 1.0, 1.0,
 		-1.0 }, { -1.0, 1.0, -1.0 }, { -1.0, -1.0, 1.0 }, { 1.0, -1.0, 1.0 }, {
@@ -15,6 +16,18 @@ GLfloat vertices[][3] = { { -1.0, -1.0, -1.0 }, { 1.0, -1.0, -1.0 }, { 1.0, 1.0,
 float angGiroCena = 0.0;
 float upDown = 0.1;
 float leftRight = 0.0;
+
+float cam_pos_x = 1.0;
+float cam_pos_y = 0.0;
+float cam_pos_z = 0.0;
+float cam_norm_x = 0.0;
+float cam_norm_y = 0.0;
+float cam_norm_z = 0.0;
+float cam_up_x = 0.0;
+float cam_up_y = 1.0;
+float cam_up_z = 0.0;
+
+float hRadians, vRadians;
 
 float walk = 0.0;
 
@@ -123,7 +136,7 @@ void mesa() {
 	glPopMatrix();
 }
 
-void armario(){
+void armario() {
 	glPushMatrix();
 	glScalef(0.5, 1, 0.5);
 	cubo(0.8, 0.8, 0.8);
@@ -131,7 +144,7 @@ void armario(){
 
 }
 
-void prateleira(){
+void prateleira() {
 
 }
 
@@ -146,20 +159,37 @@ void cena() {
 	glPopMatrix();
 }
 
-float* cameraRotation(float xCam, float yCam, float zCam){
-	float cam[3];
+void rotateCamera(float h, float v) {
+	hRadians += h;
+	vRadians += v;
 
-	return cam;
+	float radius = 1.0;
+
+	cam_norm_y = cam_pos_y + (float) (radius * sin(vRadians));
+	cam_norm_x = cam_pos_x + (float) (radius * cos(vRadians) * cos(hRadians));
+	cam_norm_z = cam_pos_z + (float) (radius * cos(vRadians) * sin(hRadians));
+
+	cam_up_x = cam_pos_x - cam_norm_x;
+	cam_up_y = abs(cam_pos_y + (float) (radius * sin(vRadians + M_PI / 2)));
+	cam_up_z = cam_pos_z - cam_norm_z;
 }
 
+void place() {
+	gluLookAt(cam_pos_x, cam_pos_y, cam_pos_z, cam_norm_x,
+			cam_norm_y, cam_norm_z, cam_up_x, cam_up_y, cam_up_z);
+}
 
 void exibe() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glPushMatrix();
-	glTranslatef(0, -1.0, upDown);
-	glRotatef(angGiroCena, 0.0, 1.0, 0.0);
-	gluLookAt(1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+
+	rotateCamera(angGiroCena, 0);
+	angGiroCena = 0;
+	place();
+
+	//testes
+
 	cena();
 	glPopMatrix();
 
@@ -203,10 +233,10 @@ void controle(unsigned char tecla, int x, int y) {
 void controleSpecial(int tecla, int x, int y) {
 	switch (tecla) {
 	case GLUT_KEY_LEFT:
-		angGiroCena -= 1.0;
+		angGiroCena -= 0.1;
 		break;
 	case GLUT_KEY_RIGHT:
-		angGiroCena += 1.0;
+		angGiroCena += 0.1;
 		break;
 	case GLUT_KEY_UP:
 		upDown -= 0.1;
