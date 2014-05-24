@@ -54,6 +54,9 @@ void polygon(int a, int b, int c, int d, float red, float green, float blue) {
 	glEnd();
 }
 
+/**
+ * draws a cube with given RGB values.
+ */
 void cubo(float red, float green, float blue) {
 
 	glEnable(GL_COLOR_MATERIAL);
@@ -83,6 +86,9 @@ void cubo(float red, float green, float blue) {
 }
 
 // modelo de cilindro com eixo em Z
+/**
+ * draws a cylinder with the given RGB values
+ */
 void cilindro(float red, float green, float blue) {
 	glEnable(GL_COLOR_MATERIAL);
 
@@ -115,7 +121,6 @@ void mesa() {
 		glScalef(1, 0.05, 0.5);
 		cubo(0.7, 0.7, 0.7); //tampo da mesa
 		glPopMatrix();
-
 		glPushMatrix();
 		glTranslatef(0.9, 0, 0.35);
 		pernaMesa();
@@ -183,7 +188,12 @@ void exibe() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glPushMatrix();
+	/*O movimento para frente e para trás não está pronto.
+	 *Se quiser dar zoom na cena descomente a linha abaixo
+	 */
+	//glTranslatef(0, 0, -upDown);
 
+	glTranslatef(0, -0.5, 0);
 	rotateCamera(angGiroCena, 0);
 	angGiroCena = 0;
 	place();
