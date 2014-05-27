@@ -4,7 +4,7 @@
  *  Created on: 22/05/2014
  *      Author: dmatos
  */
-
+//#include <windows.h>
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <math.h>
@@ -61,7 +61,7 @@ void cubo(float red, float green, float blue) {
 
 	glEnable(GL_COLOR_MATERIAL);
 
-	//vetor Normal √© necess√°rio para ilumina√ß√£o
+	//vetor Normal È necess·rio para iluminaÁ„o
 	glNormal3f(0.0, 0.0, -1.0);
 	polygon(0, 3, 2, 1, red, green, blue);
 
@@ -149,6 +149,67 @@ void armario() {
 
 }
 
+void estantePc() {
+
+    float larg_peca = 0.01;
+    float alt_peca = 0.3;
+    float prof_peca = -0.2;
+    float cor_pecaR= 0.8;
+    float cor_pecaG= 0.8;
+    float cor_pecaB= 0.8;
+   //lat_inf
+	glPushMatrix();
+	glScalef(larg_peca, alt_peca, prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+    //lat_inf
+	glPushMatrix();
+	glTranslated(0.6,0,0);
+	glScalef(larg_peca, alt_peca, prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+    //lat_inf
+	glPushMatrix();
+	glTranslated(0.9,0,0);
+	glScalef(larg_peca, alt_peca,prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	 //tampo
+    glPushMatrix();
+    glTranslated(0.45,0.3,0);
+    glRotated(90,0,1,0);
+	glRotated(90,0,0,1);
+	glScalef(larg_peca, alt_peca - 0.1, 0.45);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+    //fundo
+    glPushMatrix();
+    glTranslated(0.3,0.1,-0.2);
+	glRotated(90,0,1,0);
+	glScalef(larg_peca, alt_peca-0.1, 0.3);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	//fundo_base
+    glPushMatrix();
+    glTranslated(0.3,-0.1,-0.1);
+    glRotated(90,0,1,0);
+	glRotated(90,0,0,1);
+	glScalef(larg_peca, alt_peca/3, 0.3);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	//teclado_base
+    glPushMatrix();
+    glTranslated(0.3,0.2,0);
+    glRotated(90,0,1,0);
+	glRotated(90,0,0,1);
+	glScalef(larg_peca, alt_peca-0.1, 0.3);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+
+
+
+}
+
 void prateleira() {
 
 }
@@ -161,6 +222,10 @@ void cena() {
 	glPushMatrix();
 	glTranslatef(-2, 0, -1);
 	armario();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-2, 0, -3);
+	estantePc();
 	glPopMatrix();
 }
 
@@ -188,10 +253,10 @@ void exibe() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glPushMatrix();
-	/*O movimento para frente e para tr√°s n√£o est√° pronto.
+	/*O movimento para frente e para tr·s n„o est· pronto.
 	 *Se quiser dar zoom na cena descomente a linha abaixo
 	 */
-	//glTranslatef(0, 0, -upDown);
+	glTranslatef(0, 0, -upDown);
 
 	glTranslatef(0, -0.5, 0);
 	rotateCamera(angGiroCena, 0);
