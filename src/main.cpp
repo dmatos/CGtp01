@@ -4,7 +4,7 @@
  *  Created on: 22/05/2014
  *      Author: dmatos
  */
-//#include <windows.h>
+#include <windows.h>
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <math.h>
@@ -310,6 +310,41 @@ void estantePc() {
 
 
 }
+void notebook(){
+    float larg_peca = 0.01;
+    float alt_peca = 0.3;
+    float prof_peca = -0.2;
+    float cor_pecaR= 0;
+    float cor_pecaG= 0;
+    float cor_pecaB= 0;
+    //armacao
+    glPushMatrix();
+	glTranslated(0.2,0.4,-0.1);
+	glScalef(0.15, alt_peca-0.16,larg_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	//tela
+    glPushMatrix();
+	glTranslated(0.2,0.43,-0.09);
+	glScalef(0.13, alt_peca-0.21,larg_peca);
+	cubo(cor_pecaR+0.12, cor_pecaG+0.12, cor_pecaB+0.12);
+	glPopMatrix();
+	//teclado
+    glPushMatrix();
+	glTranslated(0.2,0.31,0);
+	glRotated(90,1,0,0);
+	glScalef(0.15, alt_peca-0.19,larg_peca+0.01);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	//teclado
+    glPushMatrix();
+	glTranslated(0.2,0.315,0.01);
+	glRotated(90,1,0,0);
+	glScalef(0.13, alt_peca-0.23,larg_peca+0.01);
+	cubo(cor_pecaR+0.04, cor_pecaG+0.04, cor_pecaB+0.04);
+	glPopMatrix();
+}
+
 void prateleira() {
 
 }
@@ -326,6 +361,7 @@ void cena() {
 	glPushMatrix();
 	glTranslatef(-2, 0, -3);
 	estantePc();
+	notebook();
 	glPopMatrix();
 }
 
