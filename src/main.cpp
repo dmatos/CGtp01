@@ -16,6 +16,7 @@ GLfloat vertices[][3] = { { -1.0, -1.0, -1.0 }, { 1.0, -1.0, -1.0 }, { 1.0, 1.0,
 float angGiroCena = 0.0;
 float upDown = 0.1;
 float leftRight = 0.0;
+float angPorta = 0.0;
 
 float cam_pos_x = 1.0;
 float cam_pos_y = 0.0;
@@ -868,6 +869,14 @@ void inicia() {
 
 void controle(unsigned char tecla, int x, int y) {
 	switch (tecla) {
+	case 'a':
+	    if(angPorta < 90)
+	        angPorta += 1;
+	    break;
+	case 'A':
+	    if(angPorta > 0)
+	        angPorta -= 1;
+	    break;
 	case 27:
 		exit(EXIT_SUCCESS);  // tecla ESC para sair
 	}
