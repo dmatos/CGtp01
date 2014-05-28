@@ -4,7 +4,7 @@
  *  Created on: 22/05/2014
  *      Author: dmatos
  */
-#include <windows.h>
+//#include <windows.h>
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <math.h>
@@ -319,13 +319,13 @@ void notebook(){
     float cor_pecaB= 0;
     //armacao
     glPushMatrix();
-	glTranslated(0.2,0.4,-0.1);
-	glScalef(0.15, alt_peca-0.16,larg_peca);
+	glTranslated(0.2,0.44,-0.1);
+	glScalef(0.15, alt_peca-0.19,larg_peca);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//tela
     glPushMatrix();
-	glTranslated(0.2,0.43,-0.09);
+	glTranslated(0.2,0.445,-0.09);
 	glScalef(0.13, alt_peca-0.21,larg_peca);
 	cubo(cor_pecaR+0.12, cor_pecaG+0.12, cor_pecaB+0.12);
 	glPopMatrix();
@@ -344,6 +344,104 @@ void notebook(){
 	cubo(cor_pecaR+0.04, cor_pecaG+0.04, cor_pecaB+0.04);
 	glPopMatrix();
 }
+void cadeira(){
+    float x_peca = 0.01;
+    float alt_peca = 0.3;
+    float y_peca = 0.01;
+    float cor_pecaR= 0.9;
+    float cor_pecaG= 0.9;
+    float cor_pecaB= 0.9;
+
+    //Perna esquerda
+    glPushMatrix();
+	glRotated(90,1,0,0);
+    glTranslated(0.1,0.3,0);
+    glScalef(x_peca, y_peca, alt_peca);
+	cilindro(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	  //joelho esquerdo
+    glPushMatrix();
+    glTranslated(0.1,0.025,0.34);
+    glRotated(145,1,0,0);
+    glScalef(x_peca, y_peca, alt_peca-0.25);
+	cilindro(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+
+	//Perna direita
+    glPushMatrix();
+	glRotated(90,1,0,0);
+    glTranslated(0.5,0.3,0);
+    glScalef(x_peca, y_peca, alt_peca);
+	cilindro(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	  //joelho direita
+    glPushMatrix();
+    glTranslated(0.5,0.025,0.34);
+    glRotated(145,1,0,0);
+    glScalef(x_peca, y_peca, alt_peca-0.25);
+	cilindro(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+		//almofada
+    glPushMatrix();
+	glTranslated(0.306,0.04,0.47);
+	glRotated(90,1,0,0);
+	glScalef(alt_peca-0.102,alt_peca-0.16,0.009);
+	cubo(cor_pecaR -0.9, cor_pecaG -0.8, cor_pecaB);
+	glPopMatrix();
+	//acento
+    glPushMatrix();
+	glTranslated(0.305,0.026,0.47);
+	glRotated(90,1,0,0);
+	glScalef(alt_peca-0.093,alt_peca-0.15,0.009);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+    //Perna direita inferior
+    glPushMatrix();
+	glRotated(80,1,0,0);
+    glTranslated(0.5,0.61,0.071);
+    glScalef(x_peca, y_peca, alt_peca+0.05);
+	cilindro(cor_pecaR+0.1, cor_pecaG+0.1, cor_pecaB);
+	glPopMatrix();
+	//Perna esquerda inferior
+    glPushMatrix();
+	glRotated(80,1,0,0);
+    glTranslated(0.11,0.61,0.071);
+    glScalef(x_peca, y_peca, alt_peca+0.05);
+	cilindro(cor_pecaR+0.1, cor_pecaG+0.1, cor_pecaB);
+	glPopMatrix();
+    //encosto direita
+    glPushMatrix();
+	glRotated(95,1,0,0);
+    glTranslated(0.5,0.61,-0.44);
+    glScalef(x_peca, y_peca, alt_peca+0.05);
+	cilindro(cor_pecaR+0.1, cor_pecaG+0.1, cor_pecaB);
+	glPopMatrix();
+	 //encosto esquerdo
+    glPushMatrix();
+	glRotated(95,1,0,0);
+    glTranslated(0.11,0.61,-0.44);
+    glScalef(x_peca, y_peca, alt_peca+0.05);
+	cilindro(cor_pecaR+0.1, cor_pecaG+0.1, cor_pecaB);
+	glPopMatrix();
+    //encosto_costas1
+    glPushMatrix();
+	glTranslated(0.305,0.3,0.65);
+	glRotated(90,0,0,1);
+	glScalef(alt_peca-0.28,alt_peca-0.1,0.009);
+	cubo(cor_pecaR , cor_pecaG , cor_pecaB);
+	glPopMatrix();
+	//encosto_costas2
+    glPushMatrix();
+	glTranslated(0.305,0.35,0.655);
+	glRotated(90,0,0,1);
+	glScalef(alt_peca-0.28,alt_peca-0.1,0.005);
+	cubo(cor_pecaR , cor_pecaG , cor_pecaB);
+	glPopMatrix();
+
+
+
+
+}
 
 void prateleira() {
 
@@ -355,6 +453,10 @@ void cena() {
 	mesa();
 	glPopMatrix();
 	glPushMatrix();
+	glTranslatef(1.5, -0.2, -0.5);
+	notebook();
+	glPopMatrix();
+	glPushMatrix();
 	glTranslatef(-2, 0, -1);
 	armario();
 	glPopMatrix();
@@ -362,7 +464,9 @@ void cena() {
 	glTranslatef(-2, 0, -3);
 	estantePc();
 	notebook();
+	cadeira();
 	glPopMatrix();
+
 }
 
 void rotateCamera(float h, float v) {
