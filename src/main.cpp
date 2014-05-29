@@ -4,7 +4,7 @@
  *  Created on: 22/05/2014
  *      Author: dmatos
  */
-//#include <windows.h>
+#include <windows.h>
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <math.h>
@@ -16,6 +16,7 @@ GLfloat vertices[][3] = { { -1.0, -1.0, -1.0 }, { 1.0, -1.0, -1.0 }, { 1.0, 1.0,
 float angGiroCena = 0.0;
 float upDown = 0.1;
 float leftRight = 0.0;
+float angPorta = 0.0;
 
 float cam_pos_x = 1.0;
 float cam_pos_y = 0.0;
@@ -141,13 +142,13 @@ void mesa() {
 	glPopMatrix();
 }
 
-void armario() {
-	glPushMatrix();
-	glScalef(0.5, 1, 0.5);
-	cubo(0.8, 0.8, 0.8);
-	glPopMatrix();
-
-}
+//void armario() {
+//	glPushMatrix();
+//	glScalef(0.5, 1, 0.5);
+//	cubo(0.8, 0.8, 0.8);
+//	glPopMatrix();
+//
+//}
 
 void estantePc() {
 
@@ -438,6 +439,406 @@ void cadeira() {
 
 }
 
+void armario() {
+    float r = 0.251;
+    float g = 0.063;
+    float b = 0.055;
+
+
+    glPushMatrix();
+	glScalef(1, 0.01, 3);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 3, 0);
+	glScalef(1, 0.01, 3);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 1.5, 3);
+	glScalef(1, 1.5, 0.01);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 1.5, 1);
+	glScalef(1, 1.5, 0.01);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 1.5, -1);
+	glScalef(1, 1.5, 0.01);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 1.5, -3);
+	glScalef(1, 1.5, 0.01);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(1, 1.5, 0);
+	glScalef(0.01, 1.5, 3);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    //porta 1
+    glPushMatrix();
+	glTranslatef(-1, 1.5, -3);
+	glRotatef(-angPorta,0,1,0);
+    //maçaneta 1
+	glPushMatrix();
+	glTranslatef(-0.1, 0.5, 1.85);
+	glRotatef(90,1,0,0);
+	glScalef(0.05, 0.05, 1);
+	cilindro(0.7, 0.7, 0.7);
+	glPopMatrix();
+
+	glTranslatef(0, 0, 1);
+	glScalef(0.01, 1.48, 0.98);
+	cubo(r,g,b);
+    glPopMatrix();
+
+
+    //porta 2
+    glPushMatrix();
+	glTranslatef(-1, 1.5, -1);
+	glRotatef(-angPorta,0,1,0);
+    //maçaneta 2
+	glPushMatrix();
+	glTranslatef(-0.1, 0.5, 1.85);
+	glRotatef(90,1,0,0);
+	glScalef(0.05, 0.05, 1);
+	cilindro(0.7, 0.7, 0.7);
+	glPopMatrix();
+
+	glTranslatef(0, 0, 1);
+	glScalef(0.01, 1.48, 0.98);
+	cubo(r,g,b);
+    glPopMatrix();
+
+
+    //porta 3
+    glPushMatrix();
+	glTranslatef(-1, 1.5, 3);
+	glRotatef(angPorta,0,1,0);
+    //maçaneta 3
+	glPushMatrix();
+	glTranslatef(-0.1, 0.5, -1.85);
+	glRotatef(90,1,0,0);
+	glScalef(0.05, 0.05, 1);
+	cilindro(0.7, 0.7, 0.7);
+	glPopMatrix();
+
+	glTranslatef(0, 0, -1);
+	glScalef(0.01, 1.48, 0.98);
+	cubo(r,g,b);
+    glPopMatrix();
+
+}
+
+void armario2() {
+	float r = 0.141;
+    float g = 0.082;
+    float b = 0.063;
+
+
+    glPushMatrix();
+	glScalef(1, 0.01, 1);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 8, 0);
+	glScalef(1, 0.01, 1);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 4, 1);
+	glScalef(1, 4, 0.01);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 4, -1);
+	glScalef(1, 4, 0.01);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(1, 4, 0);
+	glScalef(0.01, 4, 1);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    //porta
+    glPushMatrix();
+	glTranslatef(-1, 4, -1);
+	glRotatef(-angPorta,0,1,0);
+    //maçaneta
+	glPushMatrix();
+	glTranslatef(-0.1, 0.5, 1.85);
+	glRotatef(90,1,0,0);
+	glScalef(0.05, 0.05, 0.3);
+	cilindro(0.7, 0.7, 0.7);
+	glPopMatrix();
+
+	glTranslatef(0, 0, 1);
+	glScalef(0.01, 4, 1);
+	cubo(r,g,b);
+    glPopMatrix();
+
+
+}
+
+
+void mesinha() {
+	float r = 0.141;
+    float g = 0.090;
+    float b = 0.067;
+
+
+    glPushMatrix();
+	glScalef(1.5, 0.05, 2);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 1.5, 0);
+	glScalef(1.5, 0.05, 2);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glScalef(0.5, 1.5, 0.5);
+    glRotatef(270,1,0,0);
+	cilindro(r,g,b);
+    glPopMatrix();
+}
+
+void hack() {
+	float r = 0.141;
+    float g = 0.090;
+    float b = 0.067;
+
+
+    glPushMatrix();
+	glScalef(1, 0.05, 1.5);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 3, 0);
+	glScalef(1, 0.05, 1.5);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 1.5, 0.8);
+	glScalef(1, 1.5, 0.05);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 1.5, -0.8);
+	glScalef(1, 1.5, 0.05);
+	cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+	glTranslatef(0, 2, 0);
+	glScalef(1, 0.05, 0.8);
+	cubo(r,g,b);
+    glPopMatrix();
+
+}
+
+void estante(){
+    float r = 0.655;
+    float g = 0.604;
+    float b = 0.439;
+
+    glPushMatrix();
+    glTranslatef(0, 2, -0.6);
+    glScalef(0.2, 2.05, 0.01);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0, 2, 0.6);
+    glScalef(0.2, 2.05, 0.01);
+    cubo(r,g,b);
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(0, 0.1, 0);
+    glScalef(0.2, 0.01, 0.6);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0, 0.75, 0);
+    glScalef(0.2, 0.01, 0.6);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0, 1.4, 0);
+    glScalef(0.2, 0.01, 0.6);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0, 2.05, 0);
+    glScalef(0.2, 0.01, 0.6);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0, 2.7, 0);
+    glScalef(0.2, 0.01, 0.6);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0, 3.35, 0);
+    glScalef(0.2, 0.01, 0.6);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0, 4, 0);
+    glScalef(0.2, 0.01, 0.6);
+    cubo(r,g,b);
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(0.2, 2, 0);
+    glScalef(0.01, 2.05, 0.6);
+    cubo(r,g,b);
+    glPopMatrix();
+}
+
+void monitor(){
+    float r = 0.2;
+    float g = 0.2;
+    float b = 0.2;
+
+    glPushMatrix();
+    glScalef(0.3, 1, 1);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-0.26, 0, 0);
+    glScalef(0.05, 1, 1);
+    cubo(0.3,0.3,0.3);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0.5, 0, 0);
+    glScalef(0.3, 0.7, 0.7);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-0.3, 0, 1);
+    glScalef(0.1, 1, 0.1);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-0.3, 0, -1);
+    glScalef(0.1, 1, 0.1);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-0.3, 1, 0);
+    glScalef(0.1, 0.1, 1.1);
+    cubo(r,g,b);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-0.3, -1, 0);
+    glScalef(0.1, 0.1, 1.1);
+    cubo(r,g,b);
+    glPopMatrix();
+}
+void cama(){
+    float larg_peca = 0.02;
+    float alt_peca = 0.25;
+    float prof_peca = 0.03;
+    float cor_pecaR= 0.6;
+    float cor_pecaG= 0.2;
+    float cor_pecaB= 0;
+
+    //pe_esquerdo_inf
+	glPushMatrix();
+	glTranslated(0,-0.05,0);
+	glScalef(larg_peca, alt_peca, prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+    //pe_direito_inf
+	glPushMatrix();
+	glTranslated(0.7,-0.05,0);
+	glScalef(larg_peca, alt_peca, prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	//pe_esquerdo_sup
+	glPushMatrix();
+	glTranslated(0,-0.05,-1.2);
+	glScalef(larg_peca, alt_peca, prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+    //pe_direito_sup
+	glPushMatrix();
+	glTranslated(0.7,-0.05,-1.2);
+	glScalef(larg_peca, alt_peca, prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	  //barra lateral esquerda
+	glPushMatrix();
+	glTranslated(0,0.03,-0.6);
+	glScalef(larg_peca-0.01, alt_peca/3, prof_peca+0.55);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	  //barra lateral direita
+	glPushMatrix();
+	glTranslated(0.7,0.03,-0.6);
+	glScalef(larg_peca-0.01, alt_peca/3, prof_peca+0.55);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	//barra_fundo
+	glPushMatrix();
+	glTranslated(0.35,0.03,0);
+	glScalef(larg_peca+0.31, alt_peca/3, prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	//barra_frente
+	glPushMatrix();
+	glTranslated(0.35,0.03,-1.2);
+	glScalef(larg_peca+0.31, alt_peca/3, prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	//Colch�o
+	glPushMatrix();
+	glTranslated(0.35,0.12,-0.6);
+	glScalef(0.35, alt_peca/3, prof_peca+0.54);
+	cubo(0.9, 0.9, 0.9);
+	glPopMatrix();
+
+
+
+}
+
 void prateleira() {
 
 }
@@ -453,13 +854,21 @@ void cena() {
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(-2, 0, -1);
-	armario();
+//	armario();
+//    monitor();
+//    hack();
+//    armario2();
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(-2, 0, -3);
 	estantePc();
 	notebook();
 	cadeira();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(1.5, -0.2, -1.5);
+	cama();
 	glPopMatrix();
 
 }
@@ -534,6 +943,14 @@ void inicia() {
 
 void controle(unsigned char tecla, int x, int y) {
 	switch (tecla) {
+	case 'a':
+	    if(angPorta < 90)
+	        angPorta += 1;
+	    break;
+	case 'A':
+	    if(angPorta > 0)
+	        angPorta -= 1;
+	    break;
 	case 27:
 		exit(EXIT_SUCCESS);  // tecla ESC para sair
 	}
