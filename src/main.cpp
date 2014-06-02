@@ -489,10 +489,6 @@ void exibe() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glPushMatrix();
-	/*O movimento para frente e para tr�s n�o est� pronto.
-	 *Se quiser dar zoom na cena descomente a linha abaixo
-	 */
-	glTranslatef(0, 0, -upDown);
 
 	glTranslatef(0, -0.5, 0);
 	rotateCamera(angGiroCena, 0);
