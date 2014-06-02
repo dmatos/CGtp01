@@ -11,7 +11,7 @@
 
 GLfloat vertices[][3] = { { -1.0, -1.0, -1.0 }, { 1.0, -1.0, -1.0 }, { 1.0, 1.0,
 		-1.0 }, { -1.0, 1.0, -1.0 }, { -1.0, -1.0, 1.0 }, { 1.0, -1.0, 1.0 }, {
-		1.0, 1.0, 1.0 }, { -1.0, 1.0, 1.0 } };
+				1.0, 1.0, 1.0 }, { -1.0, 1.0, 1.0 } };
 
 float angGiroCena = 0.0;
 float upDown = 0.1;
@@ -27,7 +27,7 @@ float cam_norm_z = 0.0;
 float cam_up_x = 0.0;
 float cam_up_y = 1.0;
 float cam_up_z = 0.0;
-
+float posGaveta = 0;
 float hRadians, vRadians;
 
 float walk = 0.0;
@@ -155,9 +155,14 @@ void estantePc() {
 	float larg_peca = 0.01;
 	float alt_peca = 0.3;
 	float prof_peca = -0.2;
-	float cor_pecaR = 0.8;
-	float cor_pecaG = 0.6;
-	float cor_pecaB = 0.2;
+	float cor_pecaR= 0.8;
+	float cor_pecaG= 0.6;
+	float cor_pecaB= 0.2;
+
+	glPushMatrix();
+	glScalef(larg_peca, alt_peca, prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
 	//lat_inf
 	glPushMatrix();
 	glScalef(larg_peca, alt_peca, prof_peca);
@@ -165,148 +170,176 @@ void estantePc() {
 	glPopMatrix();
 	//lat_inf
 	glPushMatrix();
-	glTranslated(0.6, 0, 0);
+	glTranslated(0.6,0,0);
 	glScalef(larg_peca, alt_peca, prof_peca);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//lat_inf
 	glPushMatrix();
-	glTranslated(0.9, 0, 0);
-	glScalef(larg_peca, alt_peca, prof_peca);
+	glTranslated(0.9,0,0);
+	glScalef(larg_peca, alt_peca,prof_peca);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//tampo
 	glPushMatrix();
-	glTranslated(0.45, 0.3, 0.01);
-	glRotated(90, 0, 1, 0);
-	glRotated(90, 0, 0, 1);
+	glTranslated(0.45,0.3,0.01);
+	glRotated(90,0,1,0);
+	glRotated(90,0,0,1);
 	glScalef(larg_peca, alt_peca - 0.09, 0.5);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//fundo
 	glPushMatrix();
-	glTranslated(0.3, 0.1, -0.2);
-	glRotated(90, 0, 1, 0);
-	glScalef(larg_peca, alt_peca - 0.1, 0.3);
+	glTranslated(0.3,0.1,-0.2);
+	glRotated(90,0,1,0);
+	glScalef(larg_peca, alt_peca-0.1, 0.3);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//fundo_base
 	glPushMatrix();
-	glTranslated(0.3, -0.1, -0.1);
-	glRotated(90, 0, 1, 0);
-	glRotated(90, 0, 0, 1);
-	glScalef(larg_peca, alt_peca / 3, 0.3);
+	glTranslated(0.3,-0.1,-0.1);
+	glRotated(90,0,1,0);
+	glRotated(90,0,0,1);
+	glScalef(larg_peca, alt_peca/3, 0.3);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//teclado_base
 	glPushMatrix();
-	glTranslated(0.3, 0.2, 0);
-	glRotated(90, 0, 1, 0);
-	glRotated(90, 0, 0, 1);
-	glScalef(larg_peca, alt_peca - 0.1, 0.3);
+	glTranslated(0.3,0.2,0);
+	glRotated(90,0,1,0);
+	glRotated(90,0,0,1);
+	glScalef(larg_peca, alt_peca-0.1, 0.3);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//teclado_base_trilho_direto
 	glPushMatrix();
-	glTranslated(0.59, 0.22, 0);
-	glRotated(90, 0, 1, 0);
-	glRotated(90, 0, 0, 1);
-	glScalef(larg_peca, alt_peca - 0.1, 0.01);
-	cubo(cor_pecaR, cor_pecaG - 0.1, cor_pecaB);
+	glTranslated(0.59,0.22,0);
+	glRotated(90,0,1,0);
+	glRotated(90,0,0,1);
+	glScalef(larg_peca, alt_peca-0.1, 0.01);
+	cubo(cor_pecaR, cor_pecaG-0.1, cor_pecaB);
 	glPopMatrix();
 	//teclado_base_trilho_esquerdo
 	glPushMatrix();
-	glTranslated(0.01, 0.22, 0);
-	glRotated(90, 0, 1, 0);
-	glRotated(90, 0, 0, 1);
-	glScalef(larg_peca, alt_peca - 0.1, 0.01);
-	cubo(cor_pecaR, cor_pecaG - 0.1, cor_pecaB);
+	glTranslated(0.01,0.22,0);
+	glRotated(90,0,1,0);
+	glRotated(90,0,0,1);
+	glScalef(larg_peca, alt_peca-0.1, 0.01);
+	cubo(cor_pecaR, cor_pecaG-0.1, cor_pecaB);
 	glPopMatrix();
-	//Gaveta
+	//GavetaFrente
 	glPushMatrix();
-	glTranslated(0.75, 0.22, 0);
-	glScalef(0.14, 0.06, prof_peca);
-	cubo(cor_pecaR - 0.05, cor_pecaG - 0.1, cor_pecaB - 0.03);
+	glTranslated(0.75,0.22,0.2 + posGaveta);
+	glScalef(0.14, 0.06, larg_peca);
+	cubo(cor_pecaR-0.05, cor_pecaG-0.1, cor_pecaB-0.03);
+	glPopMatrix();
+	//Gavetatraz
+	glPushMatrix();
+	glTranslated(0.75,0.22,-0.19 + posGaveta);
+	glScalef(0.14, 0.06, larg_peca);
+	cubo(cor_pecaR-0.05, cor_pecaG-0.1, cor_pecaB-0.03);
+	glPopMatrix();
+	//fundo_gaveta
+	glPushMatrix();
+	glTranslated(0.75,0.17,0 + posGaveta);
+	glScalef(0.14, larg_peca, 0.19);
+	cubo(cor_pecaR-0.05, cor_pecaG-0.1, cor_pecaB-0.03);
+	glPopMatrix();
+	//lateral_gaveta
+	glPushMatrix();
+	glTranslated(0.62,0.21,0 + posGaveta);
+	glScalef(larg_peca, 0.05, 0.19);
+	cubo(cor_pecaR-0.05, cor_pecaG-0.1, cor_pecaB-0.03);
+	glPopMatrix();
+	//lateral_gaveta
+	glPushMatrix();
+	glTranslated(0.88,0.21,0 + posGaveta);
+	glScalef(larg_peca, 0.05, 0.19);
+	cubo(cor_pecaR-0.05, cor_pecaG-0.1, cor_pecaB-0.03);
 	glPopMatrix();
 	//Puxador_Gaveta
 	glPushMatrix();
-	glTranslated(0.75, 0.22, 0.2);
+	glTranslated(0.75,0.22,0.2 + posGaveta);
 	glScalef(0.02, 0.02, 0.02);
 	cilindro(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
+
+
 	//Base_CpU
 	glPushMatrix();
-	glTranslated(0.75, -0.25, 0);
+	glTranslated(0.75,-0.25,0);
 	glScalef(0.14, larg_peca, prof_peca);
-	cubo(cor_pecaR - 0.05, cor_pecaG - 0.03, cor_pecaB - 0.03);
+	cubo(cor_pecaR-0.05, cor_pecaG-0.03, cor_pecaB-0.03);
 	glPopMatrix();
 	//Haste_SegundoAndar_direito
 	glPushMatrix();
-	glRotated(90, 1, 0, 0);
-	glTranslated(0.9, -0.05, -0.6);
+	glRotated(90,1,0,0);
+	glTranslated(0.9,-0.05,-0.6);
 	glScalef(0.01, 0.01, 0.3);
 	cilindro(0.8, 0.8, 0.8);
 	glPopMatrix();
 	//Haste_SegundoAndar_esquerdo
 	glPushMatrix();
-	glRotated(90, 1, 0, 0);
-	glTranslated(0, -0.05, -0.6);
+	glRotated(90,1,0,0);
+	glTranslated(0,-0.05,-0.6);
 	glScalef(0.01, 0.01, 0.3);
 	cilindro(0.8, 0.8, 0.8);
 	glPopMatrix();
 	//tampo_segundo_andar
 	glPushMatrix();
-	glTranslated(0.45, 0.6, -0.05);
-	glRotated(90, 0, 1, 0);
-	glRotated(90, 0, 0, 1);
+	glTranslated(0.45,0.6,-0.05);
+	glRotated(90,0,1,0);
+	glRotated(90,0,0,1);
 	glScalef(larg_peca, alt_peca - 0.17, 0.5);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//base_central_segundo_andar
 	glPushMatrix();
-	glTranslated(0.5, 0.45, -0.05);
-	glScalef(larg_peca, alt_peca - 0.16, alt_peca - 0.17);
+	glTranslated(0.5,0.45,-0.05);
+	glScalef(larg_peca, alt_peca-0.16,alt_peca - 0.17);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//base_central_segundo_andar2
 	glPushMatrix();
-	glTranslated(0.4, 0.45, -0.05);
-	glScalef(larg_peca, alt_peca - 0.16, alt_peca - 0.17);
+	glTranslated(0.4,0.45,-0.05);
+	glScalef(larg_peca, alt_peca-0.16,alt_peca - 0.17);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//base_central_segundo_fundo
 	glPushMatrix();
-	glTranslated(0.45, 0.45, -0.18);
-	glScalef(0.05, alt_peca - 0.16, larg_peca);
+	glTranslated(0.45,0.45,-0.18);
+	glScalef(0.05, alt_peca-0.16,larg_peca);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//tampo_terceiro_andar
 	glPushMatrix();
-	glTranslated(0.45, 0.8, -0.05);
-	glRotated(90, 0, 1, 0);
-	glRotated(90, 0, 0, 1);
+	glTranslated(0.45,0.8,-0.05);
+	glRotated(90,0,1,0);
+	glRotated(90,0,0,1);
 	glScalef(larg_peca, alt_peca - 0.17, 0.5);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//base_lateral_terceiro_andar_esquerdo
 	glPushMatrix();
-	glTranslated(0, 0.7, -0.05);
-	glScalef(larg_peca, alt_peca - 0.2, alt_peca - 0.17);
+	glTranslated(0,0.7,-0.05);
+	glScalef(larg_peca, alt_peca-0.2,alt_peca - 0.17);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//base_lateral_terceiro_andar_esquerdo
 	glPushMatrix();
-	glTranslated(0.9, 0.7, -0.05);
-	glScalef(larg_peca, alt_peca - 0.2, alt_peca - 0.17);
+	glTranslated(0.9,0.7,-0.05);
+	glScalef(larg_peca, alt_peca-0.2,alt_peca - 0.17);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
 	//Haste_Central_terceiroAndar
 	glPushMatrix();
-	glRotated(90, 1, 0, 0);
-	glTranslated(0.45, -0.05, -0.8);
+	glRotated(90,1,0,0);
+	glTranslated(0.45,-0.05,-0.8);
 	glScalef(0.01, 0.01, 0.2);
 	cilindro(0.8, 0.8, 0.8);
 	glPopMatrix();
+
+
 
 }
 void notebook() {
@@ -438,59 +471,94 @@ void cadeira() {
 	glPopMatrix();
 
 }
+void livro (){
+	float larg_peca = 0.001;
+	float alt_peca = 0.1;
+	float prof_peca = -0.05;
+	float cor_pecaR= 0.8;
+	float cor_pecaG= 0.2;
+	float cor_pecaB= 0.2;
 
+	//    capa
+	glPushMatrix();
+	glTranslated(0,0,0.5);
+	glScalef(larg_peca, alt_peca, prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	// Contra capa
+	glPushMatrix();
+	glTranslated(0.03,0,0.5);
+	glScalef(larg_peca, alt_peca, prof_peca);
+	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	//Fundo Livro
+	glPushMatrix();
+	glRotated(90,1,0,0);
+	glTranslated(0.015,0.45,-0.1);
+	glScalef(0.015, 0.015, 0.2);
+	cilindro(cor_pecaR, cor_pecaG, cor_pecaB);
+	glPopMatrix();
+	//Paginas
+	glPushMatrix();
+	glTranslated(0.015,0,0.5);
+	glScalef(0.01, alt_peca, prof_peca);
+	cubo(0.9, 0.9, 0.9);
+	glPopMatrix();
+
+
+}
 void armario() {
-    float r = 0.251;
-    float g = 0.063;
-    float b = 0.055;
+	float r = 0.251;
+	float g = 0.063;
+	float b = 0.055;
 
 
-    glPushMatrix();
+	glPushMatrix();
 	glScalef(1, 0.01, 3);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 3, 0);
 	glScalef(1, 0.01, 3);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 1.5, 3);
 	glScalef(1, 1.5, 0.01);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 1.5, 1);
 	glScalef(1, 1.5, 0.01);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 1.5, -1);
 	glScalef(1, 1.5, 0.01);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 1.5, -3);
 	glScalef(1, 1.5, 0.01);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(1, 1.5, 0);
 	glScalef(0.01, 1.5, 3);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    //porta 1
-    glPushMatrix();
+	//porta 1
+	glPushMatrix();
 	glTranslatef(-1, 1.5, -3);
 	glRotatef(-angPorta,0,1,0);
-    //maçaneta 1
+	//maçaneta 1
 	glPushMatrix();
 	glTranslatef(-0.1, 0.5, 1.85);
 	glRotatef(90,1,0,0);
@@ -501,14 +569,14 @@ void armario() {
 	glTranslatef(0, 0, 1);
 	glScalef(0.01, 1.48, 0.98);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
 
-    //porta 2
-    glPushMatrix();
+	//porta 2
+	glPushMatrix();
 	glTranslatef(-1, 1.5, -1);
 	glRotatef(-angPorta,0,1,0);
-    //maçaneta 2
+	//maçaneta 2
 	glPushMatrix();
 	glTranslatef(-0.1, 0.5, 1.85);
 	glRotatef(90,1,0,0);
@@ -519,14 +587,14 @@ void armario() {
 	glTranslatef(0, 0, 1);
 	glScalef(0.01, 1.48, 0.98);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
 
-    //porta 3
-    glPushMatrix();
+	//porta 3
+	glPushMatrix();
 	glTranslatef(-1, 1.5, 3);
 	glRotatef(angPorta,0,1,0);
-    //maçaneta 3
+	//maçaneta 3
 	glPushMatrix();
 	glTranslatef(-0.1, 0.5, -1.85);
 	glRotatef(90,1,0,0);
@@ -537,50 +605,50 @@ void armario() {
 	glTranslatef(0, 0, -1);
 	glScalef(0.01, 1.48, 0.98);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
 }
 
 void armario2() {
 	float r = 0.141;
-    float g = 0.082;
-    float b = 0.063;
+	float g = 0.082;
+	float b = 0.063;
 
 
-    glPushMatrix();
+	glPushMatrix();
 	glScalef(1, 0.01, 1);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 8, 0);
 	glScalef(1, 0.01, 1);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 4, 1);
 	glScalef(1, 4, 0.01);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 4, -1);
 	glScalef(1, 4, 0.01);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(1, 4, 0);
 	glScalef(0.01, 4, 1);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    //porta
-    glPushMatrix();
+	//porta
+	glPushMatrix();
 	glTranslatef(-1, 4, -1);
 	glRotatef(-angPorta,0,1,0);
-    //maçaneta
+	//maçaneta
 	glPushMatrix();
 	glTranslatef(-0.1, 0.5, 1.85);
 	glRotatef(90,1,0,0);
@@ -591,7 +659,7 @@ void armario2() {
 	glTranslatef(0, 0, 1);
 	glScalef(0.01, 4, 1);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
 
 }
@@ -599,194 +667,194 @@ void armario2() {
 
 void mesinha() {
 	float r = 0.141;
-    float g = 0.090;
-    float b = 0.067;
+	float g = 0.090;
+	float b = 0.067;
 
 
-    glPushMatrix();
+	glPushMatrix();
 	glScalef(1.5, 0.05, 2);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 1.5, 0);
 	glScalef(1.5, 0.05, 2);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
-    glScalef(0.5, 1.5, 0.5);
-    glRotatef(270,1,0,0);
+	glPushMatrix();
+	glScalef(0.5, 1.5, 0.5);
+	glRotatef(270,1,0,0);
 	cilindro(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 }
 
 void hack() {
 	float r = 0.141;
-    float g = 0.090;
-    float b = 0.067;
+	float g = 0.090;
+	float b = 0.067;
 
 
-    glPushMatrix();
+	glPushMatrix();
 	glScalef(1, 0.05, 1.5);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 3, 0);
 	glScalef(1, 0.05, 1.5);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 1.5, 0.8);
 	glScalef(1, 1.5, 0.05);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 1.5, -0.8);
 	glScalef(1, 1.5, 0.05);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
-    glPushMatrix();
+	glPushMatrix();
 	glTranslatef(0, 2, 0);
 	glScalef(1, 0.05, 0.8);
 	cubo(r,g,b);
-    glPopMatrix();
+	glPopMatrix();
 
 }
 
 void estante(){
-    float r = 0.655;
-    float g = 0.604;
-    float b = 0.439;
+	float r = 0.655;
+	float g = 0.604;
+	float b = 0.439;
 
-    glPushMatrix();
-    glTranslatef(0, 2, -0.6);
-    glScalef(0.2, 2.05, 0.01);
-    cubo(r,g,b);
-    glPopMatrix();
+	glPushMatrix();
+	glTranslatef(0, 2, -0.6);
+	glScalef(0.2, 2.05, 0.01);
+	cubo(r,g,b);
+	glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(0, 2, 0.6);
-    glScalef(0.2, 2.05, 0.01);
-    cubo(r,g,b);
-    glPopMatrix();
-
-
-    glPushMatrix();
-    glTranslatef(0, 0.1, 0);
-    glScalef(0.2, 0.01, 0.6);
-    cubo(r,g,b);
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(0, 0.75, 0);
-    glScalef(0.2, 0.01, 0.6);
-    cubo(r,g,b);
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(0, 1.4, 0);
-    glScalef(0.2, 0.01, 0.6);
-    cubo(r,g,b);
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(0, 2.05, 0);
-    glScalef(0.2, 0.01, 0.6);
-    cubo(r,g,b);
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(0, 2.7, 0);
-    glScalef(0.2, 0.01, 0.6);
-    cubo(r,g,b);
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(0, 3.35, 0);
-    glScalef(0.2, 0.01, 0.6);
-    cubo(r,g,b);
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(0, 4, 0);
-    glScalef(0.2, 0.01, 0.6);
-    cubo(r,g,b);
-    glPopMatrix();
+	glPushMatrix();
+	glTranslatef(0, 2, 0.6);
+	glScalef(0.2, 2.05, 0.01);
+	cubo(r,g,b);
+	glPopMatrix();
 
 
-    glPushMatrix();
-    glTranslatef(0.2, 2, 0);
-    glScalef(0.01, 2.05, 0.6);
-    cubo(r,g,b);
-    glPopMatrix();
+	glPushMatrix();
+	glTranslatef(0, 0.1, 0);
+	glScalef(0.2, 0.01, 0.6);
+	cubo(r,g,b);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0, 0.75, 0);
+	glScalef(0.2, 0.01, 0.6);
+	cubo(r,g,b);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0, 1.4, 0);
+	glScalef(0.2, 0.01, 0.6);
+	cubo(r,g,b);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0, 2.05, 0);
+	glScalef(0.2, 0.01, 0.6);
+	cubo(r,g,b);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0, 2.7, 0);
+	glScalef(0.2, 0.01, 0.6);
+	cubo(r,g,b);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0, 3.35, 0);
+	glScalef(0.2, 0.01, 0.6);
+	cubo(r,g,b);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0, 4, 0);
+	glScalef(0.2, 0.01, 0.6);
+	cubo(r,g,b);
+	glPopMatrix();
+
+
+	glPushMatrix();
+	glTranslatef(0.2, 2, 0);
+	glScalef(0.01, 2.05, 0.6);
+	cubo(r,g,b);
+	glPopMatrix();
 }
 
 void monitor(){
-    float r = 0.2;
-    float g = 0.2;
-    float b = 0.2;
+	float r = 0.2;
+	float g = 0.2;
+	float b = 0.2;
 
-    glPushMatrix();
-    glScalef(0.3, 1, 1);
-    cubo(r,g,b);
-    glPopMatrix();
+	glPushMatrix();
+	glScalef(0.3, 1, 1);
+	cubo(r,g,b);
+	glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(-0.26, 0, 0);
-    glScalef(0.05, 1, 1);
-    cubo(0.3,0.3,0.3);
-    glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-0.26, 0, 0);
+	glScalef(0.05, 1, 1);
+	cubo(0.3,0.3,0.3);
+	glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(0.5, 0, 0);
-    glScalef(0.3, 0.7, 0.7);
-    cubo(r,g,b);
-    glPopMatrix();
+	glPushMatrix();
+	glTranslatef(0.5, 0, 0);
+	glScalef(0.3, 0.7, 0.7);
+	cubo(r,g,b);
+	glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(-0.3, 0, 1);
-    glScalef(0.1, 1, 0.1);
-    cubo(r,g,b);
-    glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-0.3, 0, 1);
+	glScalef(0.1, 1, 0.1);
+	cubo(r,g,b);
+	glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(-0.3, 0, -1);
-    glScalef(0.1, 1, 0.1);
-    cubo(r,g,b);
-    glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-0.3, 0, -1);
+	glScalef(0.1, 1, 0.1);
+	cubo(r,g,b);
+	glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(-0.3, 1, 0);
-    glScalef(0.1, 0.1, 1.1);
-    cubo(r,g,b);
-    glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-0.3, 1, 0);
+	glScalef(0.1, 0.1, 1.1);
+	cubo(r,g,b);
+	glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(-0.3, -1, 0);
-    glScalef(0.1, 0.1, 1.1);
-    cubo(r,g,b);
-    glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-0.3, -1, 0);
+	glScalef(0.1, 0.1, 1.1);
+	cubo(r,g,b);
+	glPopMatrix();
 }
 void cama(){
-    float larg_peca = 0.02;
-    float alt_peca = 0.25;
-    float prof_peca = 0.03;
-    float cor_pecaR= 0.6;
-    float cor_pecaG= 0.2;
-    float cor_pecaB= 0;
+	float larg_peca = 0.02;
+	float alt_peca = 0.25;
+	float prof_peca = 0.03;
+	float cor_pecaR= 0.6;
+	float cor_pecaG= 0.2;
+	float cor_pecaB= 0;
 
-    //pe_esquerdo_inf
+	//pe_esquerdo_inf
 	glPushMatrix();
 	glTranslated(0,-0.05,0);
 	glScalef(larg_peca, alt_peca, prof_peca);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
-    //pe_direito_inf
+	//pe_direito_inf
 	glPushMatrix();
 	glTranslated(0.7,-0.05,0);
 	glScalef(larg_peca, alt_peca, prof_peca);
@@ -798,19 +866,19 @@ void cama(){
 	glScalef(larg_peca, alt_peca, prof_peca);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
-    //pe_direito_sup
+	//pe_direito_sup
 	glPushMatrix();
 	glTranslated(0.7,-0.05,-1.2);
 	glScalef(larg_peca, alt_peca, prof_peca);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
-	  //barra lateral esquerda
+	//barra lateral esquerda
 	glPushMatrix();
 	glTranslated(0,0.03,-0.6);
 	glScalef(larg_peca-0.01, alt_peca/3, prof_peca+0.55);
 	cubo(cor_pecaR, cor_pecaG, cor_pecaB);
 	glPopMatrix();
-	  //barra lateral direita
+	//barra lateral direita
 	glPushMatrix();
 	glTranslated(0.7,0.03,-0.6);
 	glScalef(larg_peca-0.01, alt_peca/3, prof_peca+0.55);
@@ -854,10 +922,10 @@ void cena() {
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(-2, 0, -1);
-//	armario();
-//    monitor();
-//    hack();
-//    armario2();
+	//	armario();
+	//    monitor();
+	//    hack();
+	//    armario2();
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(-2, 0, -3);
@@ -944,13 +1012,29 @@ void inicia() {
 void controle(unsigned char tecla, int x, int y) {
 	switch (tecla) {
 	case 'a':
-	    if(angPorta < 90)
-	        angPorta += 1;
-	    break;
+		if(angPorta < 90)
+			angPorta += 1;
+		break;
 	case 'A':
-	    if(angPorta > 0)
-	        angPorta -= 1;
-	    break;
+		if(angPorta > 0)
+			angPorta -= 1;
+		break;
+	case 'g':
+		if(posGaveta>=0.3)
+		{
+			posGaveta = 0.3;
+		}else{
+			posGaveta = posGaveta + 0.05;
+		}
+		break;
+	case 'G':
+		if(posGaveta<0.05)
+		{
+			posGaveta = 0;
+		}else{
+			posGaveta = posGaveta - 0.05;
+		}
+		break;
 	case 27:
 		exit(EXIT_SUCCESS);  // tecla ESC para sair
 	}
